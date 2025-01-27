@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
+require("dotenv").config();
 
 router.post('/', function(req, res){
     //넘어온 값 확인 파라미터
-    console.log("body 출력 name: "+req.body.name);
+/*    console.log("body 출력 name: "+req.body.name);
     console.log("body 출력 email: "+req.body.email);
     console.log("body 출력 message: "+req.body.message);
+    console.log("email user: "+process.env.EMAIL_USER);
+    console.log("email pass: "+process.env.EMAIL_PASS);*/
 
     //이메일 전송하는 부분 구현
     const nodemailer = require('nodemailer'); // 모듈 import
@@ -13,8 +16,8 @@ router.post('/', function(req, res){
     const transporter = nodemailer.createTransport({
         service: 'gmail', // gmail을 사용함
         auth: {
-            user: 'heemooncode@gmail.com', // 나의 (작성자) 이메일 주소
-            pass: 'vuvztbhzfnmgbzyj' // 이메일의 비밀번호
+            user: process.env.EMAIL_USER,   // 나의 (작성자) 이메일 주소
+            pass: process.env.EMAIL_PASS    // 이메일의 비밀번호
         }
     });
 
