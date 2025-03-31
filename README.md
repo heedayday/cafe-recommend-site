@@ -1,7 +1,7 @@
 # cafe-recommend-site
 커피 추천 사이트
 <br> - Node.js 서버구현 
-<br> - Express를 활용한 html, css, js 페이지 
+<br> - Express.js를 활용한 html, css, js 페이지 
 <br> - nodemailer를 사용한 문의 메일 전송 기능
 <br> - dotenv를 활용한 중요키 보안 구현 
 <br> - nodemon을 활용한 무중단 서비스 구현
