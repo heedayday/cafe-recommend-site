@@ -21,14 +21,99 @@ https://www.tooplate.com/view/2126-antique-cafe
 
 -->
 </head>
-<body>    
-    <!-- Intro -->
-    <div id="intro" class="parallax-window" data-parallax="scroll" data-image-src="img/antique-cafe-bg-01.jpg">
-        <nav id="tm-nav" class="fixed w-full">
-            <div class="tm-container mx-auto px-2 md:py-6 text-right">
-                <button class="md:hidden py-2 px-2" id="menu-toggle"><i class="fas fa-2x fa-bars tm-text-gold"></i></button>
-                <ul class="mb-3 md:mb-0 text-2xl font-normal flex justify-end flex-col md:flex-row">
-                    <li class="inline-block mb-4 mx-4"><a href="#intro" class="tm-text-gold py-1 md:py-3 px-4">Intro</a></li>
+<body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        //console.log("Here");
+        const coffee = [
+            {img: "img/menu-item-1.png", name: "아이스 카페 아메리카노", detail: "깔끔하고 강렬한 에스프레소를 즐길 수 있는 커피", price: 4700},
+            {img: "img/menu-item-2.png", name: "카페 아메리카노", detail: "깔끔하고 강렬한 에스프레소를 가장 부드럽게 느낄 수 있는 커피", price: 4700},
+            {img: "img/menu-item-3.png", name: "카페 라떼", detail: "부드러워진 커피 위에 우유 거품을 살짝 얹은 대표적인 커피 라떼", price: 5200},
+            {img: "img/menu-item-4.png", name: "바닐라 크림 콜드 브루", detail: "콜드 브루에 더해진 바닐라 크림으로 깔끔하면서 달콤한 콜드브루", price: 6000},
+
+            {img: "img/menu-item-5.png", name: "아이스 카페 라떼", detail: "고소함과 시원함을 즐길 수 있는 대표적인 커피 라떼", price: 5200},
+            {img: "img/menu-item-6.png", name: "딸기 딜라이트 요거트", detail: "딸기 과육이 더욱 상큼하게 어우러진 과일 요거트 블렌디드", price: 6500},
+            {img: "img/menu-item-7.png", name: "돌체 라떼", detail: "부드러운 돌체 시럽이 들어간 음료로 달콤하고 진한 커피 라떼", price: 6100},
+            {img: "img/menu-item-8.png", name: "말차 크림 프라푸치노", detail: "깊고 진한 말차 본연의 맛과 향을 시원하고 부드럽게 즐길 수 있는 프라푸치노", price: 6500}
+        ]
+
+
+    //만약에 6500원 상품만 7000원으로 올랐다
+    const increseCoffeePrice =   coffee.map((item) => item.price === 6500 ? {...item, price:7000}:item);
+
+    //콤마 추가해주는 부분
+        increseCoffeePrice.forEach(increseCoffeePrice =>{
+        console.log(increseCoffeePrice.price);
+        increseCoffeePrice.price = increseCoffeePrice.price.toLocaleString();
+    })
+
+    //새 html을 생성
+    const hello = document.createElement("div");
+    //hello.textContent = "추가 되었습니다";
+    const target = document.querySelector("#hello");
+    target.appendChild(hello);
+
+
+    let htmlRight= "";
+    let htmlLeft = "";
+    increseCoffeePrice.forEach(function (item, i){
+        if(i%4 == 0 && i <4){
+            htmlRight += `<div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">`;
+        }else if(i%4 == 0 && i>=4){
+            htmlLeft += `<div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">`;
+        }
+        if(i<4){
+            console.log("test:"+i);
+            htmlRight += `    <div class="flex items-start mb-6 tm-menu-item">
+            <img src="${item.img}" alt="Image" class="rounded-md"/>
+            <div class="ml-3 sm:ml-6">
+                <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">${item.name}</h3>
+                <div class="text-white text-md sm:text-lg font-light mb-1">${item.detail}</div>
+                <div class="text-white text-md sm:text-lg font-light">${item.price}원</div>
+            </div>
+            </div>
+            `
+        }else{
+            console.log("test2:"+i);
+            htmlLeft += `    <div class="flex items-start justify-end mb-6 tm-menu-2">
+            <div class="ml-3 sm:ml-6">
+                <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">${item.name}</h3>
+                <div class="text-white text-md sm:text-lg font-light mb-1">${item.detail}</div>
+                <div class="text-white text-md sm:text-lg font-light">${item.price}원</div>
+            </div>
+            <img src="${item.img}" alt="Image" class="rounded-md"/>
+            </div>
+            `
+        }
+
+        if(i%4 == 3 && i <4){
+            htmlRight += `</div>`;
+        }else if(i%4 == 3 && i >=4){
+            htmlLeft += `</div>`;
+        }
+    })
+    document.getElementById("coffeeRight").innerHTML = htmlRight;
+    document.getElementById("coffeeLeft").innerHTML = htmlLeft;
+
+    //함수생성
+    function happy(){
+        console.log("진행중");
+        return "KKK"
+    }
+
+    //happy();
+
+    });
+</script>
+
+
+<!-- Intro -->
+<div id="intro" class="parallax-window" data-parallax="scroll" data-image-src="img/antique-cafe-bg-01.jpg">
+    <nav id="tm-nav" class="fixed w-full">
+        <div class="tm-container mx-auto px-2 md:py-6 text-right">
+            <button class="md:hidden py-2 px-2" id="menu-toggle"><i class="fas fa-2x fa-bars tm-text-gold"></i></button>
+            <ul class="mb-3 md:mb-0 text-2xl font-normal flex justify-end flex-col md:flex-row">
+                <li class="inline-block mb-4 mx-4"><a href="#intro" class="tm-text-gold py-1 md:py-3 px-4">Intro</a></li>
                     <li class="inline-block mb-4 mx-4"><a href="#menu" class="tm-text-gold py-1 md:py-3 px-4">Menu</a></li>
                     <li class="inline-block mb-4 mx-4"><a href="#about" class="tm-text-gold py-1 md:py-3 px-4">About</a></li>
                     <li class="inline-block mb-4 mx-4"><a href="#contact" class="tm-text-gold py-1 md:py-3 px-4">Contact</a></li>
@@ -43,9 +128,6 @@ https://www.tooplate.com/view/2126-antique-cafe
                 </div>    
                 <div class="bg-black bg-opacity-70 p-10 mb-5">
                     <p class="text-white leading-8 text-sm font-light">
-<!--                        This is a coffee shop template named Antique Cafe which is a parallax HTML5 template with a good responsiveness.
-                        Feel free to use this layout for your cafe.
-                    	If you have any question, please -->
                         여기는 희스타벅스 카페 홍보 페이지입니다. <br>
                         해당 페이지를 통해서 카페의 메뉴 정보를 확인하실 수 있습니다.<br>
                         <a rel="nofollow" href="https://www.starbucks.co.kr/menu/drink_list.do" target="_parent"> → 진짜 스타벅스 메뉴 확인</a></p>
@@ -68,41 +150,10 @@ https://www.tooplate.com/view/2126-antique-cafe
                 <h2 class="bg-white tm-text-brown py-6 px-12 text-4xl font-medium inline-block rounded-md">HeeStarBucks Best Menu</h2>
             </div>            
             <div class="flex flex-col lg:flex-row justify-around items-center">
-                <div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
-                    <div class="flex items-start mb-6 tm-menu-item">
-                        <img src="img/menu-item-1.png" alt="Image" class="rounded-md">
-                        <div class="ml-3 sm:ml-6">
-                            <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">아이스 카페 아메리카노</h3>
-                            <div class="text-white text-md sm:text-lg font-light mb-1">깔끔하고 강렬한 에스프레소를 즐길 수 있는 커피</div>
-                            <div class="text-white text-md sm:text-lg font-light">4,700원</div>
-                        </div>                    
-                    </div>
-                    <div class="flex items-start mb-6 tm-menu-item">
-                        <img src="img/menu-item-2.png" alt="Image" class="rounded-md">
-                        <div class="ml-3 sm:ml-6">
-                            <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">카페 아메리카노</h3>
-                            <div class="text-white text-md sm:text-lg font-light mb-1">깔끔하고 강렬한 에스프레소를 가장 부드럽게 느낄 수 있는 커피</div>
-                            <div class="text-white text-md sm:text-lg font-light">4,700원</div>
-                        </div>                    
-                    </div>
-                    <div class="flex items-start mb-6 tm-menu-item">
-                        <img src="img/menu-item-3.png" alt="Image" class="rounded-md">
-                        <div class="ml-3 sm:ml-6">
-                            <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">카페 라떼</h3>
-                            <div class="text-white text-md sm:text-lg font-light mb-1">부드러워진 커피 위에 우유 거품을 살짝 얹은 대표적인 커피 라떼</div>
-                            <div class="text-white text-md sm:text-lg font-light">5,200원</div>
-                        </div>                    
-                    </div>
-                    <div class="flex items-start mb-6 tm-menu-item">
-                        <img src="img/menu-item-4.png" alt="Image" class="rounded-md">
-                        <div class="ml-3 sm:ml-6">
-                            <h3 class="text-lg sm:text-xl tm-text-yellow mb-1">바닐라 크림 콜드 브루</h3>
-                            <div class="text-white text-md sm:text-lg font-light mb-1">콜드 브루에 더해진 바닐라 크림으로 깔끔하면서 달콤한 콜드브루</div>
-                            <div class="text-white text-md sm:text-lg font-light">6,000원</div>
-                        </div>                    
-                    </div>
-                </div>
-                <div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
+                <div id ="coffeeRight"></div>
+                <div id ="hello"></div>
+                <div id ="coffeeLeft"></div>
+               <!--<div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
                     <div class="flex items-start justify-end mb-6 tm-menu-item-2">
                         <div class="text-right mr-6">
                             <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow">아이스 카페 라떼</h3>
@@ -136,6 +187,10 @@ https://www.tooplate.com/view/2126-antique-cafe
                         <img src="img/menu-item-8.png" alt="Image" class="rounded-md">
                     </div>
                 </div>
+-->
+
+
+
             </div>
         </div>        
     </div>
