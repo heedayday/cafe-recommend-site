@@ -38,11 +38,14 @@ https://www.tooplate.com/view/2126-antique-cafe
         ]
 
 
+    //만약에 6500원 상품만 7000원으로 올랐다
+    const increseCoffeePrice =   coffee.map((item) => item.price === 6500 ? {...item, price:7000}:item);
+
     //콤마 추가해주는 부분
-        coffee.forEach(coffee =>{
-            console.log(coffee.price);
-            coffee.price = coffee.price.toLocaleString();
-        })
+        increseCoffeePrice.forEach(increseCoffeePrice =>{
+        console.log(increseCoffeePrice.price);
+        increseCoffeePrice.price = increseCoffeePrice.price.toLocaleString();
+    })
 
     //새 html을 생성
     const hello = document.createElement("div");
@@ -53,7 +56,7 @@ https://www.tooplate.com/view/2126-antique-cafe
 
     let htmlRight= "";
     let htmlLeft = "";
-    coffee.forEach(function (item, i){
+    increseCoffeePrice.forEach(function (item, i){
         if(i%4 == 0 && i <4){
             htmlRight += `<div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">`;
         }else if(i%4 == 0 && i>=4){
